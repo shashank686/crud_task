@@ -6,8 +6,8 @@
 
 3. Please Use m for minutes ex 30m ,h for hours 3h ,d for days ex 3d ,while passing string to duration.
 
-4)https://task-disappear.herokuapp.com/form heroku link
+4. https://task-disappear.herokuapp.com/form heroku link
 
 5. While clicking on Add task it will trigger a POST request and you will get back the document created in mongodb in form of json please use Json formattor for better experience.
 
-6. On clicking on Get All Tasks it will trigger a GET request and you will get back all the documents which are up to date in mongoDB.
+6. On clicking on Get All Tasks it will trigger a GET request and you will get back all the documents which are up to date till that instant in mongoDB.
