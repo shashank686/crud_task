@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../assets/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav">
+        <form action="/tasks" method="GET">
+            <button class="navButton">Get All Tasks</button>
+        </form>
+        <!-- <button class="navButton">Get All Tasks </button> -->
+    </div>
+    <div class="middle">
+        <center>
+            <h1 style="font-size:20px;" class="monospace">Enter Task !!</h1>
+        </center>
+        <form class="box" action="/addtasks" method="POST" id="myForm">
+            <label>
+                <input type="text" name="taskname" id="inp_taskname" placeholder="Task Name" required>
+            </label>
+            <label>
+                <input type="text" name="taskdescription" id="inp_taskdesc" placeholder="Task Description" required>
+            </label>
+            <label>
+                <input type="text" name="creator" id="inp_creator" placeholder="Creator" required>
+            </label>
+            <label>
+                <input type="text" name="duration" id="inp_duration" placeholder="Duration" required>
+            </label>
+            <br>
+            <button class="navButton" type="submit">Add Task</button>
+            <br>
+            <button class="navButton" type="reset" value="Reset">Reset</button>
+        </form>
+        <div>
+
+</body>
+
+</html>

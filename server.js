@@ -1,18 +1,20 @@
 import express from "express";
 import mongoose from "mongoose";
 import cron from "node-cron";
-// import shell from "shelljs";
 import cors from "cors";
 import tasks from "./dbTask.js";
 import moment from "moment";
+import bodyParser from "body-parser";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 var mTime = moment();
 var increment = 0;
+app.use("/assets", express.static("assets"));
+app.set("view engine", "ejs");
 
 // Connection to mongoDb Cloud
 
@@ -35,12 +37,11 @@ function deleteExpiredTask() {
   increment++;
 }
 
-
-
 // myOwn Time parser
 
 const timeParser = (time) => {
   const t = time[time.length - 1];
+
   var expireTime, currentTime;
 
   // m for min,h for hrs,d for days
@@ -51,15 +52,17 @@ const timeParser = (time) => {
   } else if (t === "h") {
     currentTime = time.slice(0, -1);
     expireTime = Number(currentTime) * 60;
-  } else {
+  } else if (t === "d") {
     currentTime = time.slice(0, -1);
     expireTime = Number(currentTime) * 1440;
+  } else {
+    expireTime = -1;
   }
 
   return expireTime;
 };
 
-// * * * * * * means it will run every second
+//* * * * * * means it will run every second
 
 cron.schedule("* * * * * *", function () {
   console.log("---------------------");
@@ -72,6 +75,10 @@ cron.schedule("* * * * * *", function () {
 // setInterval(deleteExpiredTask, 1000);
 
 // API routes
+
+app.get("/form", (req, res) => {
+  res.render("index");
+});
 
 app.get("/tasks", (req, res) => {
   tasks.find((err, data) => {
@@ -86,6 +93,13 @@ app.get("/tasks", (req, res) => {
 app.post("/addtasks", (req, res) => {
   var startdate = new Date();
   const durationInMinutes = timeParser(req.body.duration);
+  if (durationInMinutes === -1) {
+    res.json({
+      Error:
+        "For Time field use (m) for minutes, (h) for hours , (d) for days sorry for inconvenience",
+    });
+    return;
+  }
   const reqBody = req.body;
 
   const expireTime = {
@@ -93,7 +107,6 @@ app.post("/addtasks", (req, res) => {
   };
 
   const dbTaskInfo = Object.assign(reqBody, expireTime);
-
   tasks.create(dbTaskInfo, (err, data) => {
     if (err) {
       res.status(500).send(err);

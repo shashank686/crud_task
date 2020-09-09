@@ -1,0 +1,64 @@
+.middle {
+  display: grid;
+  place-content: center;
+  height: 60vh;
+}
+
+.box {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid;
+  box-shadow: 5px 10px wheat;
+  border-radius: 20px;
+}
+.nav {
+  flex: 1;
+  width: stretch;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-top: 2px;
+  padding: 10px;
+  margin: none;
+}
+
+.navButton {
+  border: 1px;
+  width: 90px;
+  background-color: wheat;
+  border-radius: 10px;
+  height: 30px;
+  outline-width: 0;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: right;
+  width: 400px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+
+input {
+  height: 20px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  outline-width: 0;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+.monospace {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
