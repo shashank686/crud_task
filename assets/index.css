@@ -26,7 +26,13 @@
   padding: 10px;
   margin: none;
 }
-
+.hov {
+  cursor: pointer;
+  padding: 5px;
+}
+.hov:hover {
+  transform: scale(1.1);
+}
 .navButton {
   border: 1px;
   width: 90px;
@@ -58,6 +64,35 @@ input {
 button:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 110px;
+  height: 80px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border: solid 1px black;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 .monospace {
   font-family: "Comic Sans MS", cursive, sans-serif;

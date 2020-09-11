@@ -5,7 +5,8 @@ import cors from "cors";
 import tasks from "./dbTask.js";
 import moment from "moment";
 import bodyParser from "body-parser";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -18,8 +19,7 @@ app.set("view engine", "ejs");
 
 // Connection to mongoDb Cloud
 
-const connection_url =
-  "mongodb+srv://admin:h2f9vODlxrbzhUGa@cluster0.hl3ab.mongodb.net/Bdb?retryWrites=true&w=majority";
+const connection_url = process.env.MY_CONN_URL;
 mongoose.connect(connection_url, {
   useCreateIndex: true,
   useNewUrlParser: true,
@@ -81,7 +81,7 @@ app.get("/form", (req, res) => {
 });
 
 app.get("/tasks", (req, res) => {
-  tasks.find((err, data) => {
+  tasks.find({}, "-_id -__v", (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -111,7 +111,23 @@ app.post("/addtasks", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(201).send(data);
+      const {
+        taskname,
+        taskdescription,
+        creator,
+        duration,
+        createdAt,
+        expired,
+      } = data;
+      const response = {
+        taskname: taskname,
+        taskdescription: taskdescription,
+        creator: creator,
+        duration: duration,
+        createdAt: createdAt,
+        expired: expired,
+      };
+      res.status(201).send(response);
     }
   });
 });
