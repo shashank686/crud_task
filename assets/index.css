@@ -4,14 +4,16 @@ body {
   background-size: cover;
   background-color: #fff7b0;
   height: 100vh;
+  margin: auto;
   overflow-y: hidden;
 }
 
 .middle {
-  margin-left: 100px;
   display: grid;
   place-content: center;
-  height: 60vh;
+  height: 70vh;
+  min-width: 70%;
+  padding-left: 25px;
 }
 
 .box {
@@ -25,6 +27,9 @@ body {
   border: 3px solid;
   box-shadow: 5px 10px wheat;
   border-radius: 20px;
+  position: relative;
+  overflow: auto;
+  overflow: hidden;
 }
 .nav {
   flex: 1;
@@ -69,6 +74,7 @@ input {
   border-radius: 5px;
   border: 1px solid grey;
   outline-width: 0;
+  position: relative;
 }
 
 button:hover {
