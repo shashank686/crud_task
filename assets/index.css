@@ -1,3 +1,11 @@
+body {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg")
+    center center no-repeat;
+  background-size: cover;
+  height: 95vh;
+  overflow: hidden;
+}
+
 .middle {
   display: grid;
   place-content: center;
@@ -12,7 +20,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  border: 1px solid;
+  border: 3px solid;
   box-shadow: 5px 10px wheat;
   border-radius: 20px;
 }
