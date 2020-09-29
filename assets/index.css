@@ -8,6 +8,7 @@ body {
 }
 
 .middle {
+  margin-left: 100px;
   display: grid;
   place-content: center;
   height: 60vh;
